@@ -1,8 +1,10 @@
 import React from "react";
 import "./CheckIn.css";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function CheckIn() {
+  let navigate = useNavigate();
   const [vehicle_no,setvehicle_no] = useState(" ");
   const [checkout_time,settimeout_time] = useState(" ");
   const [result,set_result]=useState(" ");
@@ -29,7 +31,7 @@ export default function CheckIn() {
       let diff_value=parseInt((checkout_time),10)-parseInt((data.checkin),10);
       console.log(diff_value)
       let ans=diff_value*40;
-      alert(`You have to pay ${ans}`)
+      alert(`You have to pay ${ans} Rupees`)
       let datas = data.checkin;
       console.log(datas);
       if(data.vehnum === vehicle_no){
@@ -52,6 +54,7 @@ export default function CheckIn() {
       <input type="text" placeholder="Vehicle number" onChange={e=>setvehicle_no(e.target.value)}/>
       <input type="text" placeholder="Check Out Time" onChange={e=>settimeout_time(e.target.value)}/>
       <button type="submit" class="valid-button" onClick={checkout_values}>Submit</button>
+      <button type="submit" class="valid-button" onClick={()=>navigate('/')}>Home</button>
     </form>
   </div>
 </section>
